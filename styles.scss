@@ -1,0 +1,138 @@
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin tablet {
+    @media(min-width: #{$tablet}) {
+        @content
+    }
+};
+
+@mixin desktop {
+    @media(min-width: #{$desktop}) {
+        @content
+    }
+}
+html {
+    box-sizing: border-box;
+}
+body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    justify-content: space-between;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    @include tablet{
+        background-color: red;
+    }
+}
+
+.top_half {
+    padding: 0 10px 0 10px;
+    .titles{
+        display: flex;
+        justify-content: space-between;
+    }
+    .playlist {
+        li{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.bot_half {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    .song_text{
+        display: flex;
+        flex-direction: column;
+        background-color: blue;
+        position: absolute;
+        // height: 53px;
+        padding-left: 2rem;
+        left: 0;
+        margin: auto 0 0 0;
+        P{
+            align-self: center;
+            color: white;
+        }
+    }
+    .icons {
+        display: flex;
+        width: 20vw;
+        justify-content: center;
+        margin: 0 auto 0 auto;
+    
+
+    }
+    svg {
+
+        width: 50px;
+        height: 50px;
+    &:hover{
+        transform: scale(110%);
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        }
+    }
+
+    
+    .progressBar::before{
+        content: "";
+        display: block;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-color: green;
+        animation-name: var(--progress-Bar, progress-Bar);
+        animation-timing-function: linear;
+        animation-duration: var(--progressBartime, 1000s);
+        animation-play-state: var(--progressBarPlay, Paused);
+        animation-delay:  var(--progressDelay, 0s);
+
+        @keyframes progress-Bar {
+            0% {
+                width: 0%;
+            }
+
+            50%{
+
+            }
+
+            100%{
+                width: 100%;
+            }
+        }
+    }
+    .progressBar {
+        width: 40vh;
+        height: 10px;
+        background-color: gray;
+        display: inline-block;
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.5);
+        }
+    }
+
+    .currTime {
+        font-size: 14px;
+        margin: 0 1em 0 auto;
+    }
+    
+    .progressBarContainer {
+        margin: 0 auto 0 auto;
+        height: 15px;
+    }
+
+    .totalTime {
+    font-size: 14px;
+    margin: 0 auto 0 1em;
+    }
+}
+
