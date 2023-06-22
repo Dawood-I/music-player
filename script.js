@@ -42,6 +42,8 @@ let totalTime = document.querySelector(".totalTime") || null
 let topHalf = document.querySelector(".top_half") || null
 let playlist = document.querySelector(".playlist") || null
 
+let tooltip = document.querySelector(".seek_val") || null
+
 song_name.textContent = queue[curr_Index].songName
 artistName.textContent = queue[curr_Index].artistname
 
@@ -57,6 +59,8 @@ song.addEventListener("canplaythrough", songDurReq)
 song.addEventListener("ended", handleNext)
 
 progressBar.addEventListener("click", handleSeek)
+
+progressBar.addEventListener("mousemove", tooltipLocation, false)
 
 // event handlers
 function handlePause(e) {
@@ -138,6 +142,23 @@ function songDurReq(){
     totalTime.textContent = convertSeconds(Math.round(song.duration))
     setInterval 
     currentTime.textContent = convertSeconds(Math.round(song.currentTime))
+}
+
+function tooltipLocation(e){
+    let p = e.offsetX / progressBar.offsetWidth
+    let seekTime = song.duration * p
+    seekTime = Math.round(seekTime)
+    seekTime = convertSeconds(seekTime)
+    console.log(seekTime)
+
+    console.log(e.offsetX)
+    console.log(tooltip.clientWidth)
+    console.log(e.x, progressBar.offsetLeft, progressBar.offsetLeft + progressBar.clientWidth)
+    if (e.x > progressBar.offsetLeft && e.x < (progressBar.offsetLeft + progressBar.clientWidth)) {
+        tooltip.style.left = (e.x - (progressBar.offsetLeft + tooltip.clientWidth/2)) + "px";
+        tooltip.textContent = seekTime
+    };
+    // tooltip.style.left = (e.offsetX - (Math.round(tooltip.clientWidth/2))) + "px";
 }
 
 

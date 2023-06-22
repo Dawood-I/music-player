@@ -109,16 +109,44 @@ body {
             }
         }
     }
+
     .progressBar {
         width: 40vh;
         height: 10px;
         background-color: gray;
         display: inline-block;
+
+        position: relative;
         &:hover {
             cursor: pointer;
             box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.5);
         }
+        &:hover .seek_val{
+            display: inline-block;
+            // position: absolute; //
+            bottom: 150%;
+        }
     }
+
+    .seek_val {
+        position: absolute;
+        display: none;
+        background: rgb(0, 0, 0, 0.5);
+        color: rgb(216, 216, 216);
+    }
+    .progressBar .seek_val::after{
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: black transparent transparent transparent;
+    }
+
+
 
     .currTime {
         font-size: 14px;

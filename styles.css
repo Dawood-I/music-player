@@ -90,10 +90,32 @@ body {
   height: 10px;
   background-color: gray;
   display: inline-block;
+  position: relative;
 }
 .bot_half .progressBar:hover {
   cursor: pointer;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+.bot_half .progressBar:hover .seek_val {
+  display: inline-block;
+  bottom: 150%;
+}
+.bot_half .seek_val {
+  position: absolute;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgb(216, 216, 216);
+}
+.bot_half .progressBar .seek_val::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }
 .bot_half .currTime {
   font-size: 14px;
